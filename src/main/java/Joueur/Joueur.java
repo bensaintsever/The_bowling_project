@@ -10,7 +10,7 @@ public class Joueur {
     /**
      * Nom du joueur.
      */
-    private final String nom_joueur;
+    private final String nomJoueur;
 
     /**
      * Liste de coups joué par le joueur.
@@ -22,8 +22,8 @@ public class Joueur {
      *
      * @param nom nom du joueur.
      */
-    public Joueur(String nom) {
-        this.nom_joueur = nom;
+    public Joueur(final String nom) {
+        this.nomJoueur = nom;
         this.listeCoups = new ArrayList<Integer>();
     }
 
@@ -33,7 +33,7 @@ public class Joueur {
      * @return le nom du joueur.
      */
     public String getNomJoueur() {
-        return nom_joueur;
+        return nomJoueur;
     }
 
     /**
@@ -52,7 +52,7 @@ public class Joueur {
      * @param lancer1 coup 1 du joueur.
      * @param lancer2 coup 2 du joueur.
      */
-    public void ajouterCoup(int lancer1, int lancer2) {
+    public void ajouterCoup(final int lancer1, final int lancer2) {
         this.listeCoups.add(lancer1);
         this.listeCoups.add(lancer2);
     }

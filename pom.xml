@@ -47,6 +47,9 @@
                         </reports>
                     </reportSet>
                 </reportSets>
+                <configuration>
+                    <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
+                </configuration>
             </plugin>
 
             <plugin>
