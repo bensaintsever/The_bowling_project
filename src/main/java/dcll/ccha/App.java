@@ -1,5 +1,6 @@
 package dcll.ccha;
 
+import jeu.Jeu;
 import joueur.Joueur;
 
 /**
@@ -13,6 +14,13 @@ public final class App {
      */
     public static void main(final String[] args) {
         new Joueur("Tom");
+        Jeu jeu = new Jeu();
+        try {
+            jeu.jouer(4,2);
+            System.out.println(jeu.getNombreQuilleTombe());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
