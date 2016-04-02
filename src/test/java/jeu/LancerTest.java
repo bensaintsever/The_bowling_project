@@ -3,7 +3,8 @@ package jeu;
 import junit.framework.TestCase;
 
 /**
- * @author Benjamin Saint-Sever
+ * Jeu de test pour la classe Lancer.
+ * @author Benjamin Saint-Sever.
  */
 public class LancerTest extends TestCase {
     public void setUp() throws Exception {
