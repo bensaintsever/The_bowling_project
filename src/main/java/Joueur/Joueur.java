@@ -32,7 +32,7 @@ public class Joueur {
      *
      * @return le nom du joueur.
      */
-    public String getNomJoueur() {
+    public final String getNomJoueur() {
         return nomJoueur;
     }
 
@@ -41,7 +41,7 @@ public class Joueur {
      *
      * @return la liste des coups joué.
      */
-    public ArrayList<Integer> getListeCoups() {
+    public final ArrayList<Integer> getListeCoups() {
         return listeCoups;
     }
 
@@ -52,7 +52,7 @@ public class Joueur {
      * @param lancer1 coup 1 du joueur.
      * @param lancer2 coup 2 du joueur.
      */
-    public void ajouterCoup(final int lancer1, final int lancer2) {
+    public final void ajouterCoup(final int lancer1, final int lancer2) {
         this.listeCoups.add(lancer1);
         this.listeCoups.add(lancer2);
     }

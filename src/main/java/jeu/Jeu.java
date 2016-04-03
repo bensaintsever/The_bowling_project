@@ -13,7 +13,7 @@ public class Jeu {
      * Variable constante qui définie le nombre de quille debout au début de
      * chaques jeux.
      */
-    private final int nombreQuilleDepart = 10;
+    private static final int NOMBRE_QUILLE_DEPART = 10;
 
     //private Comptage coup;
     /**
@@ -24,13 +24,13 @@ public class Jeu {
 
     /**
      * Méthode qui effectue un jeu normal, c'est à dire deux lancers.
-     * La valeur de chaque coups doit être entre 0 et le nombreQuilleDepart.
-     * (0 <= coup <= nombreQuilleDepart)
+     * La valeur de chaque coups doit être entre 0 et le NOMBRE_QUILLE_DEPART.
+     * (0 <= coup <= NOMBRE_QUILLE_DEPART)
      * La somme des coups doit être également entre 0 et le
-     * nombreQuilleDepart. (0 <= coup1+coup2 <= NombreQuilleDepart)
+     * NOMBRE_QUILLE_DEPART. (0 <= coup1+coup2 <= NombreQuilleDepart)
      * <p>
      * ATTENTION : Si le premier coup (coup1) à pour valeur le
-     * nombreQuilleDepart,
+     * NOMBRE_QUILLE_DEPART,
      * le deuxième coup ne sera pas effectué car le joueur aura effectué un
      * strike.
      *
@@ -40,26 +40,26 @@ public class Jeu {
      *                   sont pas conformes.
      */
     public final void jouer(final int coup1, final int coup2) throws Exception {
-        if (coup1 + coup2 < 0 || coup1 + coup2 > nombreQuilleDepart) {
+        if (coup1 + coup2 < 0 || coup1 + coup2 > NOMBRE_QUILLE_DEPART) {
             throw new Exception("La somme des coups jouées doit être entre 0 "
-                    + "et " + nombreQuilleDepart);
+                    + "et " + NOMBRE_QUILLE_DEPART);
         }
-        if (coup1 < 0 || coup1 > nombreQuilleDepart) {
+        if (coup1 < 0 || coup1 > NOMBRE_QUILLE_DEPART) {
             throw new Exception("Le coup1 doit avoir une valeur entre 0 et "
-                    + nombreQuilleDepart);
+                    + NOMBRE_QUILLE_DEPART);
         }
-        if (coup2 < 0 || coup2 > nombreQuilleDepart) {
+        if (coup2 < 0 || coup2 > NOMBRE_QUILLE_DEPART) {
             throw new Exception("Le coup2 doit avoir une valeur entre 0 et "
-                    + nombreQuilleDepart);
+                    + NOMBRE_QUILLE_DEPART);
         }
 
         // LANCER DU COUP1
-        Lancer l = new Lancer(nombreQuilleDepart, coup1);
+        Lancer l = new Lancer(NOMBRE_QUILLE_DEPART, coup1);
         int nombreQuilleRestant = l.lance();
 
         if (nombreQuilleRestant == 0) {
             //this.coup = Comptage.STRIKE;
-            this.nombreQuilleTombe = nombreQuilleDepart;
+            this.nombreQuilleTombe = NOMBRE_QUILLE_DEPART;
             return;
         }
         this.nombreQuilleTombe = nombreQuilleRestant;
@@ -74,7 +74,7 @@ public class Jeu {
         }
 
         //this.coup = Comptage.TROU;
-        this.nombreQuilleTombe = nombreQuilleDepart - nombreQuilleRestant;
+        this.nombreQuilleTombe = NOMBRE_QUILLE_DEPART - nombreQuilleRestant;
     }
 
    /* public Comptage getComptage()
@@ -99,6 +99,6 @@ public class Jeu {
      * @return nombre de quille de départ.
      */
     public final int getNombreQuilleDepart() {
-        return nombreQuilleDepart;
+        return NOMBRE_QUILLE_DEPART;
     }
 }
