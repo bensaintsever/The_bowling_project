@@ -8,18 +8,7 @@ import java.util.ArrayList;
  *         bowling.
  */
 public class Score {
-    /**
-     * constante 10.
-     */
-    static final int DIX = 10;
-    /**
-     * constante 9.
-     */
-    static final int NEUF = 9;
-    /**
-     * constante 8.
-     */
-    static final int HUIT = 8;
+
     /**
      * Contient la liste des jeux effectués durant la partie.
      * Cette liste sera complété au fur et à mesure de la partie.
@@ -85,7 +74,9 @@ public class Score {
         }
 
         int score = 0;
-
+        final int dix = 10;
+        final int neuf = 9;
+        final int huit = 8;
 
         Jeu j;
         for (int i = 0; i < ReglesDuJeu.getNombreDeJeu(); i++) {
@@ -96,19 +87,19 @@ public class Score {
                     break;
 
                 case SPARE:
-                    score += DIX;
-                    if (i < NEUF) {
+                    score += dix;
+                    if (i < neuf) {
                         score += listeJeu.get(i + 1).getNombreQuilleTombe();
                     }
                     break;
                 case STRIKE:
-                    score += DIX;
+                    score += dix;
                     // Pour éviter les dépassement d'adresse mémoire (il y a
                     // pas une formulation plus simple ??)
-                    if (i < NEUF) {
+                    if (i < neuf) {
                         score += listeJeu.get(i + 1).getNombreQuilleTombe();
                     }
-                    if (i < HUIT) {
+                    if (i < huit) {
                         score += listeJeu.get(i + 2).getNombreQuilleTombe();
                     }
                     break;
