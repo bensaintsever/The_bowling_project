@@ -5,7 +5,7 @@ package jeu;
  *
  * @author Benjamin Saint-Sever
  */
-public class ReglesDuJeu {
+public final class ReglesDuJeu {
 
     /**
      * Nombre de frames/jeu pour un joueur, dans une partie.
@@ -21,6 +21,13 @@ public class ReglesDuJeu {
      * Nombre de quille par jeu.
      */
     private static final int NOMBRE_DE_QUILLE_PAR_JEU = 10;
+
+    /**
+     * Constructeur des règles du jeu.
+     */
+    private ReglesDuJeu() {
+
+    }
 
     /**
      * Permet de recupérer le nombre de jeu dans une partie.

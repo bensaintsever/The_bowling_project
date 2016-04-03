@@ -25,10 +25,14 @@ public final class App {
     public static void main(final String[] args) {
         new Joueur("Tom");
         Score score = new Score();
-        for (int i = 0 ; i < 10 ; i++) {
+
+        final int nbJeu = 10;
+        for (int i = 0; i < nbJeu; i++) {
             Jeu jeu = new Jeu();
             try {
-                jeu.jouer(10,0);
+                final int coup1 = 10;
+                final int coup2 = 0;
+                jeu.jouer(coup1, coup2);
                 score.ajouterJeu(jeu);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -36,7 +40,7 @@ public final class App {
 
         }
         try {
-            System.out.println(score.getVal() + " " +score.getScore());
+            System.out.println(score.getVal() + " " + score.getScore());
         } catch (Exception e) {
             e.printStackTrace();
         }

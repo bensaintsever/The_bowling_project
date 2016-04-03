@@ -15,6 +15,9 @@ public class Jeu {
      */
     private static final int NOMBRE_QUILLE_DEPART = 10;
 
+    /**
+     * Objet permettant de connaître l'état d'avancement du jeu.
+     */
     private Coup coup = Coup.AUCUN_LANCER;
     /**
      * Contient le nombre de quilles tombées lors de l'ensemble des lancers
@@ -67,7 +70,6 @@ public class Jeu {
         this.nombreQuilleTombe = nombreQuilleRestant;
 
 
-
         // LANCER DU COUP2
         l = new Lancer(nombreQuilleRestant, coup2);
         nombreQuilleRestant = l.lance();
@@ -82,11 +84,11 @@ public class Jeu {
     }
 
     /**
-     * Accesseur get de coup effectué durant ce jeu
-     * @return Le coup (STRIKE,SPARE ou TROU) effectué
+     * Accesseur get de coup effectué durant ce jeu.
+     *
+     * @return Le coup (STRIKE,SPARE ou TROU) effectué.
      */
-    public Coup getCoup()
-    {
+    public final Coup getCoup() {
         return this.coup;
     }
 
