@@ -48,7 +48,9 @@ public class Jeu {
             throw new Exception("Le coup1 doit avoir une valeur entre 0 et "
                     + NOMBRE_QUILLE_DEPART);
         }
-        if (coup2 < 0 || coup2 > NOMBRE_QUILLE_DEPART) {
+        // Ici inutile de tester (coup2 > NOMBRE_QUILLE_DEPART)
+        // car ce cas est traité dans les tests précédent.
+        if (coup2 < 0) {
             throw new Exception("Le coup2 doit avoir une valeur entre 0 et "
                     + NOMBRE_QUILLE_DEPART);
         }

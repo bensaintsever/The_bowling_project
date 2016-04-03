@@ -5,29 +5,29 @@ package jeu;
  *
  * @author Benjamin Saint-Sever
  */
-public class Regles_Du_Jeu {
+public class ReglesDuJeu {
 
     /**
      * Nombre de frames/jeu pour un joueur, dans une partie.
      */
-    private final int NOMBRE_DE_JEU = 10;
+    private static final int NOMBRE_DE_JEU = 10;
 
     /**
      * Nombre de coups par jeu.
      */
-    private final int NOMBRE_DE_COUPS_PAR_JEU = 2;
+    private static final int NOMBRE_DE_COUPS_PAR_JEU = 2;
 
     /**
      * Nombre de quille par jeu.
      */
-    private final int NOMBRE_DE_QUILLE_PAR_JEU = 10;
+    private static final int NOMBRE_DE_QUILLE_PAR_JEU = 10;
 
     /**
      * Permet de recupérer le nombre de jeu dans une partie.
      *
      * @return le nombre de jeu.
      */
-    public int getNombreDeJeu() {
+    public final int getNombreDeJeu() {
         return NOMBRE_DE_JEU;
     }
 
@@ -36,7 +36,7 @@ public class Regles_Du_Jeu {
      *
      * @return le nombre de coups par jeu.
      */
-    public int getNOMBRE_DE_COUPS_PAR_JEU() {
+    public final int getNombreDeCoupsParJeu() {
         return NOMBRE_DE_COUPS_PAR_JEU;
     }
 
@@ -45,7 +45,7 @@ public class Regles_Du_Jeu {
      *
      * @return le nombre de quille par jeu.
      */
-    public int getNOMBRE_DE_QUILLE_PAR_JEU() {
+    public final int getNombreDeQuilleParJeu() {
         return NOMBRE_DE_QUILLE_PAR_JEU;
     }
 

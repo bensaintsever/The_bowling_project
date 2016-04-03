@@ -49,6 +49,13 @@ public class JeuTest extends TestCase {
         } catch (Exception e) {
             nbTests--;
         }
+
+        try {
+            nbTests++;
+            testJeu.jouer(15,-7);
+        } catch (Exception e) {
+            nbTests--;
+        }
         try {
             nbTests++;
             testJeu.jouer(12, 0);

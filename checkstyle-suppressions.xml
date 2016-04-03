@@ -5,7 +5,4 @@
         "http://www.puppycrawl.com/dtds/suppressions_1_0.dtd">
 
 <suppressions>
-    <suppress checks="DesignForExtension"
-              files="joueur.java"
-              lines="0-9999"/>
 </suppressions>
