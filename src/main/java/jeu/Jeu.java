@@ -15,7 +15,7 @@ public class Jeu {
      */
     private static final int NOMBRE_QUILLE_DEPART = 10;
 
-    //private Comptage coup;
+    private Coup coup = Coup.AUCUN_LANCER;
     /**
      * Contient le nombre de quilles tombées lors de l'ensemble des lancers
      * effectués.
@@ -60,30 +60,36 @@ public class Jeu {
         int nombreQuilleRestant = l.lance();
 
         if (nombreQuilleRestant == 0) {
-            //this.coup = Comptage.STRIKE;
+            this.coup = Coup.STRIKE;
             this.nombreQuilleTombe = NOMBRE_QUILLE_DEPART;
             return;
         }
         this.nombreQuilleTombe = nombreQuilleRestant;
+
+
 
         // LANCER DU COUP2
         l = new Lancer(nombreQuilleRestant, coup2);
         nombreQuilleRestant = l.lance();
 
         if (nombreQuilleRestant == 0) {
-            //this.coup = Comptage.SPARE;
+            this.coup = Coup.SPARE;
             return;
         }
 
-        //this.coup = Comptage.TROU;
+        this.coup = Coup.TROU;
         this.nombreQuilleTombe = NOMBRE_QUILLE_DEPART - nombreQuilleRestant;
     }
 
-   /* public Comptage getComptage()
+    /**
+     * Accesseur get de coup effectué durant ce jeu
+     * @return Le coup (STRIKE,SPARE ou TROU) effectué
+     */
+    public Coup getCoup()
     {
-        return coup;
+        return this.coup;
     }
-    */
+
 
     /**
      * Accesseur get du nombre de quille tombés lors du jeu (variable

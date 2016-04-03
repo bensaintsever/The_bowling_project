@@ -27,7 +27,7 @@ public class ReglesDuJeu {
      *
      * @return le nombre de jeu.
      */
-    public final int getNombreDeJeu() {
+    public static int getNombreDeJeu() {
         return NOMBRE_DE_JEU;
     }
 
@@ -36,7 +36,7 @@ public class ReglesDuJeu {
      *
      * @return le nombre de coups par jeu.
      */
-    public final int getNombreDeCoupsParJeu() {
+    public static int getNombreDeCoupsParJeu() {
         return NOMBRE_DE_COUPS_PAR_JEU;
     }
 
@@ -45,7 +45,7 @@ public class ReglesDuJeu {
      *
      * @return le nombre de quille par jeu.
      */
-    public final int getNombreDeQuilleParJeu() {
+    public static int getNombreDeQuilleParJeu() {
         return NOMBRE_DE_QUILLE_PAR_JEU;
     }
 

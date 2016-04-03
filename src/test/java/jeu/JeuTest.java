@@ -9,7 +9,7 @@ import junit.framework.TestCase;
  */
 public class JeuTest extends TestCase {
 
-    private static Jeu testJeu;
+    private Jeu testJeu;
 
     public void setUp() throws Exception {
         super.setUp();
@@ -116,6 +116,62 @@ public class JeuTest extends TestCase {
 
     public void testGetNombreQuilleDepart(){
         assertEquals(testJeu.getNombreQuilleDepart(),10);
+    }
+
+    public void testGetCoupAUCUN_LANCER() {
+        assertEquals(this.testJeu.getCoup(),Coup.AUCUN_LANCER);
+    }
+
+    public void testGetCoupTROU() {
+        try {
+            this.testJeu.jouer(0,0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(this.testJeu.getCoup(),Coup.TROU);
+
+        this.testJeu = new Jeu();
+        try {
+            this.testJeu.jouer(0,0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(this.testJeu.getCoup(),Coup.TROU);
+    }
+
+    public void testGetCoupSPARE1() {
+        try {
+            this.testJeu.jouer(1,9);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(this.testJeu.getCoup(),Coup.SPARE);
+
+
+        this.testJeu = new Jeu();
+        try {
+            this.testJeu.jouer(0,10);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(this.testJeu.getCoup(),Coup.SPARE);
+
+        this.testJeu = new Jeu();
+        try {
+            this.testJeu.jouer(8,2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(this.testJeu.getCoup(),Coup.SPARE);
+    }
+
+    public void testGetCoupSTRIKE() {
+        try {
+            this.testJeu.jouer(10,0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertEquals(this.testJeu.getCoup(),Coup.STRIKE);
     }
 
 }

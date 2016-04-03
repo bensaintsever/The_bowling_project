@@ -1,6 +1,7 @@
 package dcll.ccha;
 
 import jeu.Jeu;
+import jeu.Score;
 import joueur.Joueur;
 
 /**
@@ -23,14 +24,30 @@ public final class App {
      */
     public static void main(final String[] args) {
         new Joueur("Tom");
-        Jeu jeu = new Jeu();
+        Score score = new Score();
+        for (int i = 0 ; i < 10 ; i++) {
+            Jeu jeu = new Jeu();
+            try {
+                jeu.jouer(10,0);
+                score.ajouterJeu(jeu);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
         try {
+            System.out.println(score.getVal() + " " +score.getScore());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        /*try {
             final int coup1 = 4;
             final int coup2 = 2;
             jeu.jouer(coup1, coup2);
             System.out.println(jeu.getNombreQuilleTombe());
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }
