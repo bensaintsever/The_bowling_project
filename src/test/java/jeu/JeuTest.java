@@ -99,12 +99,12 @@ public class JeuTest extends TestCase {
 
     }
 
-    public void testGetNombreQuilleTombe() throws Exception {
+    public void testGetNombreQuilleTombeTotale() throws Exception {
 
         for (int i = 0; i <= 10; i++) {
             for (int j = 0; j < (10 - i); j++) {
                 testJeu.jouer(i, j);
-                int nbQuilleTombe = testJeu.getNombreQuilleTombe();
+                int nbQuilleTombe = testJeu.getNombreQuilleTombeTotale();
                 if (nbQuilleTombe != (i + j)) {
                     assertTrue(false);
                 }
@@ -113,6 +113,39 @@ public class JeuTest extends TestCase {
 
         assertTrue(true);
     }
+
+    public void testGetNombreQuilleTombeCoup1() throws Exception {
+
+        for (int i = 0; i <= 10; i++) {
+            for (int j = 0; j < (10 - i); j++) {
+                testJeu.jouer(i, j);
+                int nbQuilleTombe = testJeu.getNombreQuilleTombeCoup1();
+                if (nbQuilleTombe != i) {
+                    assertTrue(false);
+                }
+            }
+        }
+
+        assertTrue(true);
+    }
+
+    public void testGetNombreQuilleTombeCoup2() throws Exception {
+
+        for (int i = 0; i <= 10; i++) {
+            for (int j = 0; j < (10 - i); j++) {
+                testJeu.jouer(i, j);
+                int nbQuilleTombe = testJeu.getNombreQuilleTombeCoup2();
+                if (nbQuilleTombe != j) {
+                    assertTrue(false);
+                }
+            }
+        }
+
+        assertTrue(true);
+    }
+
+
+
 
     public void testGetNombreQuilleDepart(){
         assertEquals(testJeu.getNombreQuilleDepart(),10);

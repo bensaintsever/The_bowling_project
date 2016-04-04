@@ -30,8 +30,8 @@ public final class App {
         for (int i = 0; i < nbJeu; i++) {
             Jeu jeu = new Jeu();
             try {
-                final int coup1 = 10;
-                final int coup2 = 0;
+                final int coup1 = 1;
+                final int coup2 = 1;
                 jeu.jouer(coup1, coup2);
                 score.ajouterJeu(jeu);
             } catch (Exception e) {
