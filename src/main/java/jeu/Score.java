@@ -45,11 +45,11 @@ public class Score {
         listeJeu.add(j);
         switch (j.getCoup()) {
             case TROU:
-                val += j.getNombreQuilleTombe();
+                val += j.getNombreQuilleTombeTotale();
                 val += "_";
                 break;
             case SPARE:
-                val += j.getNombreQuilleTombe();
+                val += j.getNombreQuilleTombeCoup1();
                 val += "/";
                 break;
             case STRIKE:
@@ -83,13 +83,13 @@ public class Score {
             j = listeJeu.get(i);
             switch (j.getCoup()) {
                 case TROU:
-                    score += j.getNombreQuilleTombe();
+                    score += j.getNombreQuilleTombeTotale();
                     break;
 
                 case SPARE:
                     score += dix;
                     if (i < neuf) {
-                        score += listeJeu.get(i + 1).getNombreQuilleTombe();
+                        score += listeJeu.get(i + 1).getNombreQuilleTombeTotale();
                     }
                     break;
                 case STRIKE:
@@ -97,10 +97,10 @@ public class Score {
                     // Pour éviter les dépassement d'adresse mémoire (il y a
                     // pas une formulation plus simple ??)
                     if (i < neuf) {
-                        score += listeJeu.get(i + 1).getNombreQuilleTombe();
+                        score += listeJeu.get(i + 1).getNombreQuilleTombeTotale();
                     }
                     if (i < huit) {
-                        score += listeJeu.get(i + 2).getNombreQuilleTombe();
+                        score += listeJeu.get(i + 2).getNombreQuilleTombeTotale();
                     }
                     break;
                 // Pour la convention, on rajoute un default
