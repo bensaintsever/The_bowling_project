@@ -45,8 +45,17 @@ public class Score {
         listeJeu.add(j);
         switch (j.getCoup()) {
             case TROU:
-                val += j.getNombreQuilleTombeTotale();
-                val += "_";
+                if (j.getNombreQuilleTombeCoup1() == 0) {
+                    val += "_";
+                } else {
+                    val += j.getNombreQuilleTombeCoup1();
+                }
+                if (j.getNombreQuilleTombeCoup2() == 0) {
+                    val += "_";
+                }
+                else {
+                    val += j.getNombreQuilleTombeCoup2();
+                }
                 break;
             case SPARE:
                 val += j.getNombreQuilleTombeCoup1();

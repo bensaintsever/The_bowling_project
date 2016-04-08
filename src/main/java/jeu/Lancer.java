@@ -11,7 +11,7 @@ public class Lancer {
     private int nbrQuilleDebout;
 
     /**
-     * Nombre de quilles qui tombera lors du lancé.
+     * Nombre de quilles qui tomberont lors du lancé.
      */
     private int nbrQuilleTombe;
 
