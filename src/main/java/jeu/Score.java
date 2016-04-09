@@ -13,7 +13,7 @@ public class Score {
      * Contient la liste des jeux effectués durant la partie.
      * Cette liste sera complété au fur et à mesure de la partie.
      */
-    private ArrayList<Jeu> listeJeu;
+    private ArrayList<DernierJeu> listeJeu;
     /**
      * Contient l'affichage du score durant la partie.
      * Exemple : 5/8_XX ... ou XX7_0_0_0_ .
@@ -25,7 +25,7 @@ public class Score {
      * Initialise les attributs.
      */
     public Score() {
-        listeJeu = new ArrayList<Jeu>();
+        listeJeu = new ArrayList<DernierJeu>();
         val = "";
     }
 
@@ -37,7 +37,7 @@ public class Score {
      * @throws Exception génére une exception si le nombre de jeu a
      *                   atteint le max selon règleDuJeu.
      */
-    public final void ajouterJeu(final Jeu j) throws Exception {
+    public final void ajouterJeu(final DernierJeu j) throws Exception {
         if (listeJeu.size() == ReglesDuJeu.getNombreDeJeu()) {
             throw new Exception("La partie est terminée, "
                     + "pas de nouveau coup possible");
@@ -78,7 +78,7 @@ public class Score {
         final int neuf = 9;
         final int huit = 8;
 
-        Jeu j;
+        DernierJeu j;
         for (int i = 0; i < ReglesDuJeu.getNombreDeJeu(); i++) {
             j = listeJeu.get(i);
             switch (j.getCoup()) {

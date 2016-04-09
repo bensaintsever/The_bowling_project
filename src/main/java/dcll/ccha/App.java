@@ -1,6 +1,6 @@
 package dcll.ccha;
 
-import jeu.Jeu;
+import jeu.DernierJeu;
 import jeu.Score;
 import joueur.Joueur;
 
@@ -28,7 +28,7 @@ public final class App {
 
         final int nbJeu = 10;
         for (int i = 0; i < nbJeu; i++) {
-            Jeu jeu = new Jeu();
+            DernierJeu jeu = new DernierJeu();
             try {
                 final int coup1 = 10;
                 final int coup2 = 0;

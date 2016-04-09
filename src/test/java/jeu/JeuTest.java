@@ -9,12 +9,12 @@ import junit.framework.TestCase;
  */
 public class JeuTest extends TestCase {
 
-    private Jeu testJeu;
+    private DernierJeu testJeu;
 
     public void setUp() throws Exception {
         super.setUp();
 
-        testJeu = new Jeu();
+        testJeu = new DernierJeu();
 
     }
 
@@ -130,7 +130,7 @@ public class JeuTest extends TestCase {
         }
         assertEquals(this.testJeu.getCoup(),Coup.TROU);
 
-        this.testJeu = new Jeu();
+        this.testJeu = new DernierJeu();
         try {
             this.testJeu.jouer(0,0);
         } catch (Exception e) {
@@ -148,7 +148,7 @@ public class JeuTest extends TestCase {
         assertEquals(this.testJeu.getCoup(),Coup.SPARE);
 
 
-        this.testJeu = new Jeu();
+        this.testJeu = new DernierJeu();
         try {
             this.testJeu.jouer(0,10);
         } catch (Exception e) {
@@ -156,7 +156,7 @@ public class JeuTest extends TestCase {
         }
         assertEquals(this.testJeu.getCoup(),Coup.SPARE);
 
-        this.testJeu = new Jeu();
+        this.testJeu = new DernierJeu();
         try {
             this.testJeu.jouer(8,2);
         } catch (Exception e) {
