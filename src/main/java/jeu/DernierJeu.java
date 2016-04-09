@@ -114,13 +114,11 @@ public class DernierJeu {
         if (coup1 == ReglesDuJeu.getNombreDeQuilleParJeu()) {
             this.jeu1 = new Jeu();
             this.jeu1.jouer(coup1, 0);
-            if (coup2 == ReglesDuJeu.getNombreDeCoupsParJeu()) {
+            if (coup2 == ReglesDuJeu.getNombreDeQuilleParJeu()) {
                 this.jeu2 = new Jeu();
                 this.jeu2.jouer(coup2, 0);
-                if (coup3 == ReglesDuJeu.getNombreDeCoupsParJeu()) {
-                    this.jeu3 = new Jeu();
-                    this.jeu3.jouer(coup3, 0);
-                }
+                this.jeu3 = new Jeu();
+                this.jeu3.jouer(coup3, 0);
             } else {
                 this.jeu2 = new Jeu();
                 this.jeu2.jouer(coup2, coup3);

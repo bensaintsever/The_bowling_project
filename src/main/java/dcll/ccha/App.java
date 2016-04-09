@@ -43,9 +43,9 @@ public final class App {
 
 
 
-        final int coup1 = 1;
+        final int coup1 = 10;
         final int coup2 = 2;
-        final int coup3 = 3;
+        final int coup3 = 4;
         DernierJeu dj = new DernierJeu();
         try {
             dj.jouer(coup1, coup2, coup3);

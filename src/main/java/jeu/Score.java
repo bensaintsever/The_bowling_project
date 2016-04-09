@@ -32,8 +32,9 @@ public class Score {
      * Initialise les attributs.
      */
     public Score() {
-        listeJeu = new ArrayList<Jeu>();
-        val = "";
+        this.listeJeu = new ArrayList<Jeu>();
+        this.dernierJeu = null;
+        this.val = "";
     }
 
     /**
@@ -45,22 +46,22 @@ public class Score {
      *                   atteint le max selon règleDuJeu.
      */
     public final void ajouterJeu(final Jeu j) throws Exception {
-        if (listeJeu.size() == ReglesDuJeu.getNombreDeJeu()) {
+        if (this.listeJeu.size() == ReglesDuJeu.getNombreDeJeu()) {
             throw new Exception("La partie est terminée, "
                     + "pas de nouveau coup possible");
         }
-        listeJeu.add(j);
+        this.listeJeu.add(j);
         switch (j.getCoup()) {
             case TROU:
-                val += j.getNombreQuilleTombeCoup1();
-                val += j.getNombreQuilleTombeCoup2();
+                this.val += j.getNombreQuilleTombeCoup1();
+                this.val += j.getNombreQuilleTombeCoup2();
                 break;
             case SPARE:
-                val += j.getNombreQuilleTombeCoup1();
-                val += "/";
+                this.val += j.getNombreQuilleTombeCoup1();
+                this.val += "/";
                 break;
             case STRIKE:
-                val += "X";
+                this.val += "X";
                 break;
             // Pour la convention, on rajoute un default
             default:
@@ -81,18 +82,18 @@ public class Score {
             throw new Exception("Impossible de rajouter"
                     + "un dernier coup en plein milieu de la partie");
         }
-        dernierJeu = j;
+        this.dernierJeu = j;
         switch (j.getJeu1().getCoup()) {
             case TROU:
-                val += j.getJeu1().getNombreQuilleTombeCoup1();
-                val += j.getJeu1().getNombreQuilleTombeCoup2();
+                this.val += j.getJeu1().getNombreQuilleTombeCoup1();
+                this.val += j.getJeu1().getNombreQuilleTombeCoup2();
                 return; // Pas le droit à un second jeu
             case SPARE:
-                val += j.getJeu1().getNombreQuilleTombeCoup1();
-                val += "/";
+                this.val += j.getJeu1().getNombreQuilleTombeCoup1();
+                this.val += "/";
                 break;
             case STRIKE:
-                val += "X";
+                this.val += "X";
                 break;
             // Pour la convention, on rajoute un default
             default:
@@ -101,18 +102,19 @@ public class Score {
         switch (j.getJeu2().getCoup()) {
             case TROU:
                 if (j.getJeu1().getCoup() == Coup.SPARE) {
-                    val += j.getJeu2().getNombreQuilleTombeCoup1();
+                    this.val += j.getJeu2().getNombreQuilleTombeCoup1();
                     return;
                 }
-                val += j.getJeu2().getNombreQuilleTombeCoup1();
-                val += j.getJeu2().getNombreQuilleTombeCoup2();
+                System.out.println("JE SUIS LA");
+                this.val += j.getJeu2().getNombreQuilleTombeCoup1();
+                this.val += j.getJeu2().getNombreQuilleTombeCoup2();
                 return;
             case SPARE:
-                val += j.getJeu2().getNombreQuilleTombeCoup1();
-                val += "/";
+                this.val += j.getJeu2().getNombreQuilleTombeCoup1();
+                this.val += "/";
                 return;
             case STRIKE:
-                val += "X";
+                this.val += "X";
                 break;
             // Pour la convention, on rajoute un default
             default:
@@ -120,13 +122,13 @@ public class Score {
         }
         switch (j.getJeu3().getCoup()) {
             case TROU:
-                val += j.getJeu3().getNombreQuilleTombeCoup1();
+                this.val += j.getJeu3().getNombreQuilleTombeCoup1();
                 return;
             case SPARE:
                 // IMPOSSIBLE
                 break;
             case STRIKE:
-                val += "X";
+                this.val += "X";
                 break;
             // Pour la convention, on rajoute un default
             default:
@@ -142,7 +144,8 @@ public class Score {
      *                   atteint le max selon règleDuJeu.
      */
     public final int getScore() throws Exception {
-        if (listeJeu.size() != ReglesDuJeu.getNombreDeJeu()) {
+        if (this.listeJeu.size() != ReglesDuJeu.getNombreDeJeu() - 1 &&
+                this.dernierJeu != null) {
             throw new Exception("La partie n'est pas terminée !");
         }
 
@@ -152,30 +155,31 @@ public class Score {
         final int huit = 8;
 
         Jeu j;
-        for (int i = 0; i < ReglesDuJeu.getNombreDeJeu(); i++) {
-            j = listeJeu.get(i);
+        // - 1 Pour calculer séparément le dernierJeu
+        for (int i = 0; i < ReglesDuJeu.getNombreDeJeu() - 1; i++) {
+            j = this.listeJeu.get(i);
             switch (j.getCoup()) {
                 case TROU:
                     score += j.getNombreQuilleTombeTotale();
                     break;
 
                 case SPARE:
-                    score += dix;
-                    if (i < neuf) {
-                        score += listeJeu.get(i + 1).
+                    score += dix - 1;
+                    if (i < neuf - 1) {
+                        score += this.listeJeu.get(i + 1).
                                 getNombreQuilleTombeTotale();
                     }
                     break;
                 case STRIKE:
-                    score += dix;
+                    score += dix - 1;
                     // Pour éviter les dépassement d'adresse mémoire (il y a
                     // pas une formulation plus simple ??)
-                    if (i < neuf) {
-                        score += listeJeu.get(i + 1).
+                    if (i < neuf - 1) {
+                        score += this.listeJeu.get(i + 1).
                                 getNombreQuilleTombeTotale();
                     }
-                    if (i < huit) {
-                        score += listeJeu.get(i + 2).
+                    if (i < huit - 1) {
+                        score += this.listeJeu.get(i + 2).
                                 getNombreQuilleTombeTotale();
                     }
                     break;
@@ -194,6 +198,6 @@ public class Score {
      * @return un String contenant l'affichage du score actuel.
      */
     public final String getVal() {
-        return val;
+        return this.val;
     }
 }
