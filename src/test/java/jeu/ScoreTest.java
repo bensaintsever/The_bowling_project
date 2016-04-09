@@ -14,7 +14,7 @@ public class ScoreTest extends TestCase {
         /******** TEST 1 ********/
         boolean test1 = false;
         Score s1 = new Score();
-        DernierJeu j1 = new DernierJeu();
+        Jeu j1 = new Jeu();
 
 
         j1.jouer(1, 2); //NORMAL * 10
@@ -30,7 +30,7 @@ public class ScoreTest extends TestCase {
         /******** TEST 2 ********/
         boolean test2 = false;
         Score s2 = new Score();
-        DernierJeu j2 = new DernierJeu();
+        Jeu j2 = new Jeu();
 
         j2.jouer(9, 1); //SPARE * 1
         s2.ajouterJeu(j2); // +
@@ -49,7 +49,7 @@ public class ScoreTest extends TestCase {
         /******** TEST 3 ********/
         boolean test3 = false;
         Score s3 = new Score();
-        DernierJeu j3 = new DernierJeu();
+        Jeu j3 = new Jeu();
 
         j3.jouer(10, 0); //STRIKE * 1
         s3.ajouterJeu(j3); // +
@@ -66,7 +66,7 @@ public class ScoreTest extends TestCase {
         /******** TEST 4 ********/
         boolean test4 = false;
         Score s4 = new Score();
-        DernierJeu j4 = new DernierJeu();
+        Jeu j4 = new Jeu();
 
         j4.jouer(10, 0); //STRIKE * 1
         s4.ajouterJeu(j4); //+
@@ -85,7 +85,7 @@ public class ScoreTest extends TestCase {
         /******** TEST 5 ********/
         boolean test5 = false;
         Score s5 = new Score();
-        DernierJeu j5 = new DernierJeu();
+        Jeu j5 = new Jeu();
 
         j5.jouer(10, 0); //STRIKE * 10
         for (int i = 0; i < 10; i++) {
@@ -115,7 +115,7 @@ public class ScoreTest extends TestCase {
         boolean test2 = false;
         try {
             Score s2 = new Score();
-            DernierJeu j2 = new DernierJeu();
+            Jeu j2 = new Jeu();
             j2.jouer(1, 3);
             //Depassement intentionnel
             for (int i = 0; i < 12; i++) {
@@ -130,7 +130,7 @@ public class ScoreTest extends TestCase {
         boolean test3 = false;
 
         Score s3 = new Score();
-        DernierJeu j3 = new DernierJeu();
+        Jeu j3 = new Jeu();
         j3.jouer(8, 0);
         s3.ajouterJeu(j3);
         for (int i = 0; i < 9; i++) {
@@ -151,7 +151,7 @@ public class ScoreTest extends TestCase {
 
     public void testGetVal() throws Exception {
         Score s1 = new Score();
-        DernierJeu j1 = new DernierJeu();
+        Jeu j1 = new Jeu();
 
         j1.jouer(10, 0);
         s1.ajouterJeu(j1);

@@ -13,7 +13,14 @@ public class Score {
      * Contient la liste des jeux effectués durant la partie.
      * Cette liste sera complété au fur et à mesure de la partie.
      */
-    private ArrayList<DernierJeu> listeJeu;
+    private ArrayList<Jeu> listeJeu;
+
+    /**
+     * Contient le dernier des jeux joués. Il est différencié
+     * des autres jeux car il peut contenir trois lancer.
+     */
+    private DernierJeu dernierJeu;
+
     /**
      * Contient l'affichage du score durant la partie.
      * Exemple : 5/8_XX ... ou XX7_0_0_0_ .
@@ -25,7 +32,7 @@ public class Score {
      * Initialise les attributs.
      */
     public Score() {
-        listeJeu = new ArrayList<DernierJeu>();
+        listeJeu = new ArrayList<Jeu>();
         val = "";
     }
 
@@ -37,7 +44,7 @@ public class Score {
      * @throws Exception génére une exception si le nombre de jeu a
      *                   atteint le max selon règleDuJeu.
      */
-    public final void ajouterJeu(final DernierJeu j) throws Exception {
+    public final void ajouterJeu(final Jeu j) throws Exception {
         if (listeJeu.size() == ReglesDuJeu.getNombreDeJeu()) {
             throw new Exception("La partie est terminée, "
                     + "pas de nouveau coup possible");
@@ -45,12 +52,78 @@ public class Score {
         listeJeu.add(j);
         switch (j.getCoup()) {
             case TROU:
-                val += j.getNombreQuilleTombe();
-                val += "_";
+                val += j.getNombreQuilleTombeCoup1();
+                val += j.getNombreQuilleTombeCoup2();
                 break;
             case SPARE:
-                val += j.getNombreQuilleTombe();
+                val += j.getNombreQuilleTombeCoup1();
                 val += "/";
+                break;
+            case STRIKE:
+                val += "X";
+                break;
+            // Pour la convention, on rajoute un default
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Méthode qui définit le dernier jeu.
+     * L'affichage du score est mis à jour (uniquement le String val).
+     *
+     * @param j DernierJeu à ajouter
+     * @throws Exception génére une exception si le nombre de jeu est
+     *                   n'a pas atteint le max - 1
+     */
+    public final void ajouterDernierJeu(final DernierJeu j) throws Exception {
+        if (listeJeu.size() != ReglesDuJeu.getNombreDeJeu() - 1) {
+            throw new Exception("Impossible de rajouter"
+                    + "un dernier coup en plein milieu de la partie");
+        }
+        dernierJeu = j;
+        switch (j.getJeu1().getCoup()) {
+            case TROU:
+                val += j.getJeu1().getNombreQuilleTombeCoup1();
+                val += j.getJeu1().getNombreQuilleTombeCoup2();
+                return; // Pas le droit à un second jeu
+            case SPARE:
+                val += j.getJeu1().getNombreQuilleTombeCoup1();
+                val += "/";
+                break;
+            case STRIKE:
+                val += "X";
+                break;
+            // Pour la convention, on rajoute un default
+            default:
+                break;
+        }
+        switch (j.getJeu2().getCoup()) {
+            case TROU:
+                if (j.getJeu1().getCoup() == Coup.SPARE) {
+                    val += j.getJeu2().getNombreQuilleTombeCoup1();
+                    return;
+                }
+                val += j.getJeu2().getNombreQuilleTombeCoup1();
+                val += j.getJeu2().getNombreQuilleTombeCoup2();
+                return;
+            case SPARE:
+                val += j.getJeu2().getNombreQuilleTombeCoup1();
+                val += "/";
+                return;
+            case STRIKE:
+                val += "X";
+                break;
+            // Pour la convention, on rajoute un default
+            default:
+                break;
+        }
+        switch (j.getJeu3().getCoup()) {
+            case TROU:
+                val += j.getJeu3().getNombreQuilleTombeCoup1();
+                return;
+            case SPARE:
+                // IMPOSSIBLE
                 break;
             case STRIKE:
                 val += "X";
@@ -78,18 +151,19 @@ public class Score {
         final int neuf = 9;
         final int huit = 8;
 
-        DernierJeu j;
+        Jeu j;
         for (int i = 0; i < ReglesDuJeu.getNombreDeJeu(); i++) {
             j = listeJeu.get(i);
             switch (j.getCoup()) {
                 case TROU:
-                    score += j.getNombreQuilleTombe();
+                    score += j.getNombreQuilleTombeTotale();
                     break;
 
                 case SPARE:
                     score += dix;
                     if (i < neuf) {
-                        score += listeJeu.get(i + 1).getNombreQuilleTombe();
+                        score += listeJeu.get(i + 1).
+                                getNombreQuilleTombeTotale();
                     }
                     break;
                 case STRIKE:
@@ -97,10 +171,12 @@ public class Score {
                     // Pour éviter les dépassement d'adresse mémoire (il y a
                     // pas une formulation plus simple ??)
                     if (i < neuf) {
-                        score += listeJeu.get(i + 1).getNombreQuilleTombe();
+                        score += listeJeu.get(i + 1).
+                                getNombreQuilleTombeTotale();
                     }
                     if (i < huit) {
-                        score += listeJeu.get(i + 2).getNombreQuilleTombe();
+                        score += listeJeu.get(i + 2).
+                                getNombreQuilleTombeTotale();
                     }
                     break;
                 // Pour la convention, on rajoute un default

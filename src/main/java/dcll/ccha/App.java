@@ -1,6 +1,7 @@
 package dcll.ccha;
 
 import jeu.DernierJeu;
+import jeu.Jeu;
 import jeu.Score;
 import joueur.Joueur;
 
@@ -27,8 +28,8 @@ public final class App {
         Score score = new Score();
 
         final int nbJeu = 10;
-        for (int i = 0; i < nbJeu; i++) {
-            DernierJeu jeu = new DernierJeu();
+        for (int i = 0; i < nbJeu - 1; i++) {
+            Jeu jeu = new Jeu();
             try {
                 final int coup1 = 10;
                 final int coup2 = 0;
@@ -38,6 +39,19 @@ public final class App {
                 e.printStackTrace();
             }
 
+        }
+
+
+
+        final int coup1 = 1;
+        final int coup2 = 2;
+        final int coup3 = 3;
+        DernierJeu dj = new DernierJeu();
+        try {
+            dj.jouer(coup1, coup2, coup3);
+            score.ajouterDernierJeu(dj);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         try {
             System.out.println(score.getVal() + " " + score.getScore());

@@ -9,12 +9,12 @@ import junit.framework.TestCase;
  */
 public class JeuTest extends TestCase {
 
-    private DernierJeu testJeu;
+    private Jeu testJeu;
 
     public void setUp() throws Exception {
         super.setUp();
 
-        testJeu = new DernierJeu();
+        testJeu = new Jeu();
 
     }
 
@@ -99,12 +99,12 @@ public class JeuTest extends TestCase {
 
     }
 
-    public void testGetNombreQuilleTombe() throws Exception {
+    public void testGetNombreQuilleTombeTotale() throws Exception {
 
         for (int i = 0; i <= 10; i++) {
             for (int j = 0; j < (10 - i); j++) {
                 testJeu.jouer(i, j);
-                int nbQuilleTombe = testJeu.getNombreQuilleTombe();
+                int nbQuilleTombe = testJeu.getNombreQuilleTombeTotale();
                 if (nbQuilleTombe != (i + j)) {
                     assertTrue(false);
                 }
@@ -130,7 +130,7 @@ public class JeuTest extends TestCase {
         }
         assertEquals(this.testJeu.getCoup(),Coup.TROU);
 
-        this.testJeu = new DernierJeu();
+        this.testJeu = new Jeu();
         try {
             this.testJeu.jouer(0,0);
         } catch (Exception e) {
@@ -148,7 +148,7 @@ public class JeuTest extends TestCase {
         assertEquals(this.testJeu.getCoup(),Coup.SPARE);
 
 
-        this.testJeu = new DernierJeu();
+        this.testJeu = new Jeu();
         try {
             this.testJeu.jouer(0,10);
         } catch (Exception e) {
@@ -156,7 +156,7 @@ public class JeuTest extends TestCase {
         }
         assertEquals(this.testJeu.getCoup(),Coup.SPARE);
 
-        this.testJeu = new DernierJeu();
+        this.testJeu = new Jeu();
         try {
             this.testJeu.jouer(8,2);
         } catch (Exception e) {
