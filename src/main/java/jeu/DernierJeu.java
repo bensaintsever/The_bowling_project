@@ -27,29 +27,14 @@ public class DernierJeu {
      */
     private Jeu jeu3;
 
-    /**
-     * Contient le nombre de quilles tombées lors du premier coup.
-     */
-    private int nombreQuilleTombeCoup1;
-
-    /**
-     * Contient le nombre de quilles tombées lors du deuxième coup.
-     */
-    private int nombreQuilleTombeCoup2;
-
-    /**
-     * Contient le nombre de quilles tombées lors du deuxième coup.
-     */
-    private int nombreQuilleTombeCoup3;
-
 
     /**
      * Constructeur de Jeu.
      */
     public DernierJeu() {
-        this.nombreQuilleTombeCoup1 = 0;
-        this.nombreQuilleTombeCoup2 = 0;
-        this.nombreQuilleTombeCoup3 = 0;
+        this.jeu1 = new Jeu();
+        this.jeu2 = new Jeu();
+        this.jeu3 = new Jeu();
     }
 
     /**
@@ -112,22 +97,16 @@ public class DernierJeu {
         }
 
         if (coup1 == ReglesDuJeu.getNombreDeQuilleParJeu()) {
-            this.jeu1 = new Jeu();
             this.jeu1.jouer(coup1, 0);
             if (coup2 == ReglesDuJeu.getNombreDeQuilleParJeu()) {
-                this.jeu2 = new Jeu();
                 this.jeu2.jouer(coup2, 0);
-                this.jeu3 = new Jeu();
                 this.jeu3.jouer(coup3, 0);
             } else {
-                this.jeu2 = new Jeu();
                 this.jeu2.jouer(coup2, coup3);
             }
         } else {
-            this.jeu1 = new Jeu();
             this.jeu1.jouer(coup1, coup2);
             if (this.jeu1.getCoup() == Coup.SPARE) {
-                this.jeu2 = new Jeu();
                 this.jeu2.jouer(coup3, 0);
             }
         }

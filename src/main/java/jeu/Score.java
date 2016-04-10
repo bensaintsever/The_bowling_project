@@ -105,7 +105,6 @@ public class Score {
                     this.val += j.getJeu2().getNombreQuilleTombeCoup1();
                     return;
                 }
-                System.out.println("JE SUIS LA");
                 this.val += j.getJeu2().getNombreQuilleTombeCoup1();
                 this.val += j.getJeu2().getNombreQuilleTombeCoup2();
                 return;

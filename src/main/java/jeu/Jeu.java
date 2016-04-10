@@ -23,12 +23,12 @@ public class Jeu {
     /**
      * Contient le nombre de quilles tombées lors du premier coup.
      */
-    private int nombreQuilleTombeCoup1;
+    private int nombreQuilleTombeCoup1 = 0;
 
     /**
      * Contient le nombre de quilles tombées lors du deuxième coup.
      */
-    private int nombreQuilleTombeCoup2;
+    private int nombreQuilleTombeCoup2 = 0;
 
     /**
      * Méthode qui effectue un jeu normal, c'est à dire deux lancers.
@@ -62,6 +62,9 @@ public class Jeu {
             throw new Exception("Le coup2 doit avoir une valeur entre 0 et "
                     + NOMBRE_QUILLE_DEPART);
         }
+
+        this.nombreQuilleTombeCoup1 = 0;
+        this.nombreQuilleTombeCoup2 = 0;
 
         // LANCER DU COUP1
         Lancer l = new Lancer(NOMBRE_QUILLE_DEPART, coup1);
