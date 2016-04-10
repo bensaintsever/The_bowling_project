@@ -13,7 +13,7 @@ public class Score {
      * Contient la liste des jeux effectués durant la partie.
      * Cette liste sera complété au fur et à mesure de la partie.
      */
-    private ArrayList<Jeu> listeJeu;
+    private final ArrayList<Jeu> listeJeu;
 
     /**
      * Contient le dernier des jeux joués. Il est différencié
@@ -46,15 +46,29 @@ public class Score {
      *                   atteint le max selon règleDuJeu.
      */
     public final void ajouterJeu(final Jeu j) throws Exception {
-        if (this.listeJeu.size() == ReglesDuJeu.getNombreDeJeu()) {
+        if (this.listeJeu.size() == ReglesDuJeu.getNombreDeJeu() - 1
+                && dernierJeu != null) {
             throw new Exception("La partie est terminée, "
                     + "pas de nouveau coup possible");
         }
+        if (this.listeJeu.size() == ReglesDuJeu.getNombreDeJeu() - 1) {
+            throw new Exception("Il faut jouer un Jeu de type DernierJeu "
+                    + "et pas un Jeu normal");
+        }
+
         this.listeJeu.add(j);
         switch (j.getCoup()) {
             case TROU:
-                this.val += j.getNombreQuilleTombeCoup1();
-                this.val += j.getNombreQuilleTombeCoup2();
+                if (j.getNombreQuilleTombeCoup1() == 0) {
+                    this.val += "_";
+                } else {
+                    this.val += j.getNombreQuilleTombeCoup1();
+                }
+                if (j.getNombreQuilleTombeCoup2() == 0) {
+                    this.val += "_";
+                } else {
+                    this.val += j.getNombreQuilleTombeCoup2();
+                }
                 break;
             case SPARE:
                 this.val += j.getNombreQuilleTombeCoup1();
@@ -79,14 +93,25 @@ public class Score {
      */
     public final void ajouterDernierJeu(final DernierJeu j) throws Exception {
         if (listeJeu.size() != ReglesDuJeu.getNombreDeJeu() - 1) {
-            throw new Exception("Impossible de rajouter"
-                    + "un dernier coup en plein milieu de la partie");
+            throw new Exception("Impossible de rajouter "
+                    + "un dernier coup en plein milieu de la partie "
+                    + ", il reste "
+                    +  (ReglesDuJeu.getNombreDeJeu() - listeJeu.size() + 1)
+                    + " Jeu simple à jouer");
         }
         this.dernierJeu = j;
         switch (j.getJeu1().getCoup()) {
             case TROU:
-                this.val += j.getJeu1().getNombreQuilleTombeCoup1();
-                this.val += j.getJeu1().getNombreQuilleTombeCoup2();
+                if (j.getJeu1().getNombreQuilleTombeCoup1() == 0) {
+                    this.val += "_";
+                } else {
+                    this.val += j.getJeu1().getNombreQuilleTombeCoup1();
+                }
+                if (j.getJeu1().getNombreQuilleTombeCoup2() == 0) {
+                    this.val += "_";
+                } else {
+                    this.val += j.getJeu1().getNombreQuilleTombeCoup2();
+                }
                 return; // Pas le droit à un second jeu
             case SPARE:
                 this.val += j.getJeu1().getNombreQuilleTombeCoup1();
@@ -102,11 +127,23 @@ public class Score {
         switch (j.getJeu2().getCoup()) {
             case TROU:
                 if (j.getJeu1().getCoup() == Coup.SPARE) {
-                    this.val += j.getJeu2().getNombreQuilleTombeCoup1();
+                    if (j.getJeu2().getNombreQuilleTombeCoup1() == 0) {
+                        this.val += "_";
+                    } else {
+                        this.val += j.getJeu2().getNombreQuilleTombeCoup1();
+                    }
                     return;
                 }
-                this.val += j.getJeu2().getNombreQuilleTombeCoup1();
-                this.val += j.getJeu2().getNombreQuilleTombeCoup2();
+                if (j.getJeu2().getNombreQuilleTombeCoup1() == 0) {
+                    this.val += "_";
+                } else {
+                    this.val += j.getJeu2().getNombreQuilleTombeCoup1();
+                }
+                if (j.getJeu2().getNombreQuilleTombeCoup2() == 0) {
+                    this.val += "_";
+                } else {
+                    this.val += j.getJeu2().getNombreQuilleTombeCoup2();
+                }
                 return;
             case SPARE:
                 this.val += j.getJeu2().getNombreQuilleTombeCoup1();
@@ -121,7 +158,11 @@ public class Score {
         }
         switch (j.getJeu3().getCoup()) {
             case TROU:
-                this.val += j.getJeu3().getNombreQuilleTombeCoup1();
+                if (j.getJeu3().getNombreQuilleTombeCoup1() == 0) {
+                    this.val += "_";
+                } else {
+                    this.val += j.getJeu2().getNombreQuilleTombeCoup1();
+                }
                 return;
             case SPARE:
                 // IMPOSSIBLE
@@ -143,8 +184,8 @@ public class Score {
      *                   atteint le max selon règleDuJeu.
      */
     public final int getScore() throws Exception {
-        if (this.listeJeu.size() != ReglesDuJeu.getNombreDeJeu() - 1 &&
-                this.dernierJeu != null) {
+        if (this.listeJeu.size() != ReglesDuJeu.getNombreDeJeu() - 1
+                || this.dernierJeu == null) {
             throw new Exception("La partie n'est pas terminée !");
         }
 
@@ -195,8 +236,14 @@ public class Score {
      * Retourne l'affichage du score.
      *
      * @return un String contenant l'affichage du score actuel.
+     * @throws Exception Génère une exception si la partie n'est pas terminée
+     * C'est à dire 9 jeu et 1 dernierJeu
      */
-    public final String getVal() {
+    public final String getVal() throws Exception {
+        if (this.listeJeu.size() != ReglesDuJeu.getNombreDeJeu() - 1
+                && this.dernierJeu != null) {
+            throw new Exception("La partie n'est pas terminée !");
+        }
         return this.val;
     }
 }

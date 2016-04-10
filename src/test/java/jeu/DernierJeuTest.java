@@ -113,6 +113,49 @@ public class DernierJeuTest extends TestCase {
     }
 
     public void testJouer() throws Exception {
-
+        try {
+            dj.jouer(11,1,1);
+            assertTrue(false);
+        } catch (Exception e) {
+            dj = new DernierJeu();
+        }
+        try {
+            dj.jouer(1,11,1);
+            assertTrue(false);
+        } catch (Exception e) {
+            dj = new DernierJeu();
+        }
+        try {
+            dj.jouer(1,1,11);
+            assertTrue(false);
+        } catch (Exception e) {
+            dj = new DernierJeu();
+        }
+        try {
+            dj.jouer(-5,1,1);
+            assertTrue(false);
+        } catch (Exception e) {
+            dj = new DernierJeu();
+        }
+        try {
+            dj.jouer(1,-5,1);
+            assertTrue(false);
+        } catch (Exception e) {
+            dj = new DernierJeu();
+        }
+        try {
+            dj.jouer(1,1,-5);
+            assertTrue(false);
+        } catch (Exception e) {
+            dj = new DernierJeu();
+        }
+        try {
+            dj.jouer(-5,5,5);
+            assertTrue(false);
+        } catch (Exception e) {
+            dj = new DernierJeu();
+        }
     }
+    // J'ai rajouté le dj = new DernierJeu()
+    // pour éviter un warning de catch vide
 }

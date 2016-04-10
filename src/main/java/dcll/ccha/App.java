@@ -8,7 +8,7 @@ import joueur.Joueur;
 /**
  * Classe de lancement.
  */
-public final class App {
+final class App {
 
     /**
      * Constructeur de la classe App pour que checkstyle soit content.

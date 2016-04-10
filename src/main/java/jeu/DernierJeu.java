@@ -13,19 +13,19 @@ public class DernierJeu {
     /**
      * Le coup numéro 1 permettant de connaître l'état d'avancement du jeu.
      */
-    private Jeu jeu1;
+    private final Jeu jeu1;
 
     /**
      * Le coup numéro 2  permettant de connaître l'état d'avancement du jeu.
      * Possible uniquement si le jeu précédent n'est pas un TROU
      */
-    private Jeu jeu2;
+    private final Jeu jeu2;
 
     /**
      * Le coup numéro 3 permettant de connaître l'état d'avancement du jeu.
      * Possible uniquement si les deux jeu précédents sont des STRIKE
      */
-    private Jeu jeu3;
+    private final Jeu jeu3;
 
 
     /**

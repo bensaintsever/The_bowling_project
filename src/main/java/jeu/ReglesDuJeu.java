@@ -5,7 +5,7 @@ package jeu;
  *
  * @author Benjamin Saint-Sever
  */
-public final class ReglesDuJeu {
+final class ReglesDuJeu {
 
     /**
      * Nombre de frames/jeu pour un joueur, dans une partie.
@@ -24,9 +24,9 @@ public final class ReglesDuJeu {
 
     /**
      * Constructeur des règles du jeu.
+     * Il est private car instancier une regle du jeu n'a pas de sens
      */
     private ReglesDuJeu() {
-
     }
 
     /**
