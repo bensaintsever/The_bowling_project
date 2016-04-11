@@ -10,14 +10,14 @@ import junit.framework.TestCase;
 public class ScoreTest extends TestCase {
 
     // DernierJeu factice
-    private final DernierJeu dj = new DernierJeu();
+    private final DernierJeu dernierJeu = new DernierJeu();
 
 
 
 
     public void setUp() throws Exception {
         super.setUp();
-        dj.jouer(0,0,0);
+        dernierJeu.jouer(0,0,0);
     }
 
     public void testAjouterJeu() throws Exception {
@@ -30,8 +30,8 @@ public class ScoreTest extends TestCase {
         for (int i = 0; i < 9; i++) {
             s1.ajouterJeu(j1);
         }
-        s1.ajouterDernierJeu(dj);
-        if (s1.getScore() == 30) {
+        s1.ajouterDernierJeu(dernierJeu);
+        if (s1.getScore() == 27) {
             test1 = true;
         }else{
             System.out.println("ERREUR TESTAjouterJeu N° 1");
@@ -44,12 +44,13 @@ public class ScoreTest extends TestCase {
 
         j2.jouer(9, 1); //SPARE * 1
         s2.ajouterJeu(j2); // +
-        j2.jouer(4, 2); // NORMAL * 9
+        j2.jouer(4, 2); // NORMAL * 8
         for (int i = 0; i < 8; i++) {
             s2.ajouterJeu(j2);
         }
-        s2.ajouterDernierJeu(dj);
-        if (s2.getScore() == 68) {
+        s2.ajouterDernierJeu(dernierJeu);
+        System.out.println(s2.getScore());
+        if (s2.getScore() == 62) {
             test2 = true;
         }
         else{
@@ -63,12 +64,12 @@ public class ScoreTest extends TestCase {
 
         j3.jouer(10, 0); //STRIKE * 1
         s3.ajouterJeu(j3); // +
-        j3.jouer(8, 1); //NORMAL * 9
+        j3.jouer(8, 1); //NORMAL * 8
         for (int i = 0; i < 8; i++) {
             s3.ajouterJeu(j3);
         }
-        s3.ajouterDernierJeu(dj);
-        if (s3.getScore() == 100) {
+        s3.ajouterDernierJeu(dernierJeu);
+        if (s3.getScore() == 91) {
             test3 = true;
         }else{
             System.out.println("ERREUR TESTAjouterJeu N° 3");
@@ -83,12 +84,12 @@ public class ScoreTest extends TestCase {
         s4.ajouterJeu(j4); //+
         j4.jouer(9, 1); // SPARE * 1
         s4.ajouterJeu(j4);// +
-        j4.jouer(5, 0); //NORMAL * 8
+        j4.jouer(5, 0); //NORMAL * 7
         for (int i = 0; i < 7; i++) {
             s4.ajouterJeu(j4);
         }
-        s4.ajouterDernierJeu(dj);
-        if (s4.getScore() == 75) {
+        s4.ajouterDernierJeu(dernierJeu);
+        if (s4.getScore() == 70) {
             test4 = true;
         }{
             System.out.println("ERREUR TESTAjouterJeu N° 4");
@@ -103,9 +104,9 @@ public class ScoreTest extends TestCase {
         for (int i = 0; i < 9; i++) {
             s5.ajouterJeu(j5);
         }
-        s5.ajouterDernierJeu(dj);
+        s5.ajouterDernierJeu(dernierJeu);
         //PREMIER COUPS COMPTABILISE
-        if (s5.getScore() == 240) {
+        if (s5.getScore() == 300) {
             test5 = true;
         }{
             System.out.println("ERREUR TESTAjouterJeu N° 5");
@@ -134,7 +135,7 @@ public class ScoreTest extends TestCase {
             for (int i = 0; i < 12; i++) {
                 s2.ajouterJeu(j2);
             }
-            s2.ajouterDernierJeu(dj);
+            s2.ajouterDernierJeu(dernierJeu);
             s2.getScore();
         } catch (Exception e) {
             test2 = true;
@@ -152,8 +153,8 @@ public class ScoreTest extends TestCase {
             j3.jouer(0, 0);
             s3.ajouterJeu(j3);
         }
-        s3.ajouterDernierJeu(dj);
-        if (s3.getScore() == 8) {
+        s3.ajouterDernierJeu(dernierJeu);
+        if (s3.getScore() == 72) {
             test3 = true;
         }else{
             System.out.println("ERREUR TESTGetScore N° 3");
