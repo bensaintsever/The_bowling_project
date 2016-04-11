@@ -4,7 +4,7 @@ package jeu;
  * @author Thomas Guillou.
  *         Classe représentant un lancé simple de boule.
  */
-public class Lancer {
+class Lancer {
     /**
      * Nombre de quilles debout à l'initialisation.
      */

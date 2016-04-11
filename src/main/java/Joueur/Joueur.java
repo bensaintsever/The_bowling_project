@@ -15,7 +15,7 @@ public class Joueur {
     /**
      * Liste de coups joué par le joueur.
      */
-    private ArrayList<Integer> listeCoups;
+    private final ArrayList<Integer> listeCoups;
 
     /**
      * Constructeur de joueur.

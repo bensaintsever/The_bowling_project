@@ -1,4 +1,4 @@
-package dcll.ccha;
+package bowling;
 
 import jeu.DernierJeu;
 import jeu.Jeu;
@@ -8,14 +8,18 @@ import joueur.Joueur;
 /**
  * Classe de lancement.
  */
-final class App {
+final class Bowling {
 
     /**
-     * Constructeur de la classe App pour que checkstyle soit content.
-     * Le constructeur est privé car instancier la classe App n'a pas de sens :
-     * En effet celle-çi ne contient que la méthode main (static)
+     * Sera le joueur qui jouera au bowling.
      */
-    private App() {
+    private Joueur joueur;
+
+    /**
+     * Constructeur de la classe Bowling
+     */
+    public Bowling(Joueur j) {
+        this.joueur = j;
     }
 
     /**

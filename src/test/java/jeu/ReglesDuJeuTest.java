@@ -10,6 +10,7 @@ import junit.framework.TestCase;
 public class ReglesDuJeuTest extends TestCase {
 
 
+
     public final void testGetNombreDeJeu() throws Exception {
         assertEquals(ReglesDuJeu.getNombreDeJeu(),10);
     }
