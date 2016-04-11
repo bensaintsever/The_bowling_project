@@ -57,4 +57,9 @@ public class Joueur {
         this.listeCoups.add(lancer2);
     }
 
+    public final void ajouterDernierCoup(final int lancer1, final int lancer2
+            , final int lancer3) {
+
+    }
+
 }

@@ -204,29 +204,64 @@ public class Score {
                     break;
 
                 case SPARE:
-                    score += dix - 1;
-                    if (i < neuf - 1) {
+                    score += 10;
+                    if (i == ReglesDuJeu.getNombreDeJeu() - 2) {
                         score += this.listeJeu.get(i + 1).
                                 getNombreQuilleTombeTotale();
+                    } else {
+                        score += dernierJeu.getJeu1().getNombreQuilleTombeCoup1();
                     }
                     break;
                 case STRIKE:
-                    score += dix - 1;
-                    // Pour éviter les dépassement d'adresse mémoire (il y a
-                    // pas une formulation plus simple ??)
-                    if (i < neuf - 1) {
-                        score += this.listeJeu.get(i + 1).
-                                getNombreQuilleTombeTotale();
-                    }
-                    if (i < huit - 1) {
-                        score += this.listeJeu.get(i + 2).
-                                getNombreQuilleTombeTotale();
+                    score += 10;
+                    // Pour éviter les dépassement d'adresse mémoire
+                    if (i == ReglesDuJeu.getNombreDeJeu() - 3) {
+                        // Si le coup suivant est un Strike
+                        if (this.listeJeu.get(i+1).getCoup() == Coup.STRIKE) {
+                            score += 10;
+                            score += dernierJeu.getJeu1()
+                                    .getNombreQuilleTombeCoup1();
+                        } else {
+                            score += this.listeJeu.get(i + 1)
+                                    .getNombreQuilleTombeTotale();
+                        }
+                    } else {
+                        if (i == ReglesDuJeu.getNombreDeJeu() - 2) {
+                            // Si le coup suivant (le dernier jeu) est un Strike
+                            if (this.dernierJeu.getJeu1().getCoup() == Coup.STRIKE) {
+                                score += 10;
+                                score += dernierJeu.getJeu2()
+                                        .getNombreQuilleTombeCoup1();
+                            } else {
+                                score += this.dernierJeu.getJeu1()
+                                        .getNombreQuilleTombeTotale();
+                            }
+                        }
                     }
                     break;
                 // Pour la convention, on rajoute un default
                 default:
                     break;
             }
+        }
+
+        // On gère maintenant le dernier score
+        switch (this.dernierJeu.getJeu1().getCoup()) {
+            case STRIKE:
+                score += 10;
+                if (this.dernierJeu.getJeu2().getCoup() == Coup.STRIKE) {
+                    score += 10;
+                    score += this.dernierJeu.getJeu3().getNombreQuilleTombeCoup1();
+                } else {
+                    score += this.dernierJeu.getJeu2().getNombreQuilleTombeTotale();
+                }
+                break;
+            case SPARE:
+                score += 10;
+                score += this.dernierJeu.getJeu2().getNombreQuilleTombeCoup1();
+                break;
+            default:
+                score += this.dernierJeu.getJeu1().getNombreQuilleTombeTotale();
         }
 
         return score;

@@ -13,17 +13,22 @@ final class Bowling {
     /**
      * Sera le joueur qui jouera au bowling.
      */
-    private Joueur joueur;
+    private final Joueur joueur;
 
     /**
      * Constructeur de la classe Bowling
+     * La liste contenu dans joueur sera initialisé au préalable
      */
     public Bowling(Joueur j) {
         this.joueur = j;
     }
 
 
+    public void demarrerPartie() {
+        for (Integer jeu : joueur.getListeCoups()) {
 
+        }
+    }
 
 
 
