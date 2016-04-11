@@ -1,4 +1,4 @@
-package joujou;
+package joueur;
 
 import java.util.ArrayList;
 
