@@ -57,9 +57,19 @@ public class Joueur {
         this.listeCoups.add(lancer2);
     }
 
-    public final void ajouterDernierCoup(final int lancer1, final int lancer2
-            , final int lancer3) {
-
+    /**
+     * Permet d'ajouter les coups d'un dernier jeu dans la liste
+     * des coups effectué par le Joueur.
+     *
+     * @param lancer1 coup 1 du Joueur.
+     * @param lancer2 coup 2 du Joueur.
+     * @param lancer3 coup 3 du Joueur.
+     */
+    public final void ajouterDernierCoup(final int lancer1, final int lancer2,
+                                         final int lancer3) {
+        this.listeCoups.add(lancer1);
+        this.listeCoups.add(lancer2);
+        this.listeCoups.add(lancer3);
     }
 
 }

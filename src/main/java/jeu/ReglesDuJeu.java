@@ -5,7 +5,7 @@ package jeu;
  *
  * @author Benjamin Saint-Sever
  */
-final class ReglesDuJeu {
+public final class ReglesDuJeu {
 
 
     /**
@@ -26,7 +26,7 @@ final class ReglesDuJeu {
     /**
      * Constructeur des règles du jeu.
      */
-    public ReglesDuJeu() {
+    private ReglesDuJeu() {
     }
 
     /**

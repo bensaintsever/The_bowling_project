@@ -44,6 +44,7 @@ public class ScoreTest extends TestCase {
 
         j2.jouer(9, 1); //SPARE * 1
         s2.ajouterJeu(j2); // +
+        j2 = new Jeu();
         j2.jouer(4, 2); // NORMAL * 8
         for (int i = 0; i < 8; i++) {
             s2.ajouterJeu(j2);
@@ -64,6 +65,7 @@ public class ScoreTest extends TestCase {
 
         j3.jouer(10, 0); //STRIKE * 1
         s3.ajouterJeu(j3); // +
+        j3 = new Jeu();
         j3.jouer(8, 1); //NORMAL * 8
         for (int i = 0; i < 8; i++) {
             s3.ajouterJeu(j3);
@@ -82,8 +84,10 @@ public class ScoreTest extends TestCase {
 
         j4.jouer(10, 0); //STRIKE * 1
         s4.ajouterJeu(j4); //+
+        j4 = new Jeu();
         j4.jouer(9, 1); // SPARE * 1
         s4.ajouterJeu(j4);// +
+        j4 = new Jeu();
         j4.jouer(5, 0); //NORMAL * 7
         for (int i = 0; i < 7; i++) {
             s4.ajouterJeu(j4);
@@ -91,7 +95,7 @@ public class ScoreTest extends TestCase {
         s4.ajouterDernierJeu(dernierJeu);
         if (s4.getScore() == 70) {
             test4 = true;
-        }{
+        } else {
             System.out.println("ERREUR TESTAjouterJeu N° 4");
         }
 
@@ -104,15 +108,16 @@ public class ScoreTest extends TestCase {
         for (int i = 0; i < 9; i++) {
             s5.ajouterJeu(j5);
         }
+        dernierJeu.jouer(10,10,10);
         s5.ajouterDernierJeu(dernierJeu);
         //PREMIER COUPS COMPTABILISE
         if (s5.getScore() == 300) {
             test5 = true;
-        }{
+        } else {
             System.out.println("ERREUR TESTAjouterJeu N° 5");
         }
 
-        //assertTrue(test1 & test2 & test3 & test4 & test5);
+        assertTrue(test1 & test2 & test3 & test4 & test5);
     }
 
     public void testGetScore() throws Exception {
@@ -154,7 +159,7 @@ public class ScoreTest extends TestCase {
             s3.ajouterJeu(j3);
         }
         s3.ajouterDernierJeu(dernierJeu);
-        if (s3.getScore() == 72) {
+        if (s3.getScore() == 8) {
             test3 = true;
         }else{
             System.out.println("ERREUR TESTGetScore N° 3");
@@ -248,6 +253,37 @@ public class ScoreTest extends TestCase {
                 ,8,2);
 
         assertEquals("__112233445/6/7/8/9/XX", s1.getVal());
+
+
+        s1 = new Score();
+        last.jouer(9,0,0);
+        this.auto(s1,last
+                ,9,0
+                ,9,0
+                ,9,0
+                ,9,0
+                ,9,0
+                ,9,0
+                ,9,0
+                ,9,0
+                ,9,0);
+
+        assertEquals("9_9_9_9_9_9_9_9_9_9_", s1.getVal());
+
+        s1 = new Score();
+        last.jouer(5,5,5);
+        this.auto(s1,last
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5);
+
+        assertEquals("5/5/5/5/5/5/5/5/5/5/5", s1.getVal());
     }
 
     /**

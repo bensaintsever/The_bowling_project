@@ -29,7 +29,7 @@ class Lancer {
      * @throws Exception génere une exception lorsque les paramètres de ne
      *                   sont pas conformes.
      */
-    public Lancer(final int nombreQuilleDepart, final int nombreQuilleTombe)
+    Lancer(final int nombreQuilleDepart, final int nombreQuilleTombe)
             throws
             Exception {
         if (nombreQuilleDepart < nombreQuilleTombe) {
