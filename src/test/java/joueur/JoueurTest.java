@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class JoueurTest extends TestCase {
 
     /**
-     * Joueur de référence pour les tests
+     * joueur de référence pour les tests
      */
     private Joueur joueur;
 

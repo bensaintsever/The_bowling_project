@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Joueur {
     /**
-     * Nom du Joueur.
+     * Nom du joueur.
      */
     private final String nomJoueur;
 
