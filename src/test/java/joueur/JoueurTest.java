@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  * @author Thomas Guillou
- * Classe de test de la classe joueur
+ * Classe de test de la classe Joueur
  */
 public class JoueurTest extends TestCase {
 
@@ -16,7 +16,7 @@ public class JoueurTest extends TestCase {
     private Joueur joueur;
 
     /**
-     * Méthode d'initialisation du joueur
+     * Méthode d'initialisation du Joueur
      * @throws Exception
      */
     public void setUp() throws Exception {
@@ -25,7 +25,7 @@ public class JoueurTest extends TestCase {
     }
 
     /**
-    * Test sur la recupération du nom du joueur.
+    * Test sur la recupération du nom du Joueur.
     * @throws Exception
     */
     public void testGetNomJoueur() throws Exception {
