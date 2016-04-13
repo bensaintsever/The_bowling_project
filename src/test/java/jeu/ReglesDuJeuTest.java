@@ -9,7 +9,12 @@ import junit.framework.TestCase;
  */
 public class ReglesDuJeuTest extends TestCase {
 
+    private ReglesDuJeu rdj;
 
+    public void setUp() throws Exception {
+        super.setUp();
+        rdj = new ReglesDuJeu();
+    }
 
     public final void testGetNombreDeJeu() throws Exception {
         assertEquals(ReglesDuJeu.getNombreDeJeu(),10);

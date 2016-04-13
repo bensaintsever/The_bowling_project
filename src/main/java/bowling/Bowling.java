@@ -35,9 +35,15 @@ final class Bowling {
 
     /**
      * Méthode qui démarre une partie.
-     * @throws Exception lève une exception en cas de problème
+     * @throws Exception Si le joueur n'a pas entré tous ses coups
      */
     public void demarrerPartie() throws Exception {
+        if (joueur.getListeCoups().size()
+                != ReglesDuJeu.getNombreDeJeu() * 2 + 1) {
+            // + 1 car le dernierCoup possède un coup de plus
+            throw new Exception("Le joueur n'a pas entré tous ses coups");
+        }
+
         Iterator<Integer> iter = this.joueur.getListeCoups().iterator();
         for (int i = 0; i < ReglesDuJeu.getNombreDeJeu() - 1; i++) {
             Jeu jeu = new Jeu();
@@ -51,39 +57,14 @@ final class Bowling {
 
     /**
      * Méthode qui affiche le score de la partie.
-     * @throws Exception Lève une exception si la partie n'est pas terminée.
      */
-    public void afficherScore() throws Exception {
-        System.out.println(joueur.getNomJoueur() + " : \n" + score.getVal()
-                + "\na obtenu " + score.getScore() + " points");
-    }
-
-    /**
-     * Méthode main de l'application.
-     *
-     * @param args paramètres donnés lors du lancement de l'application.
-     */
-    public static void main(final String[] args) {
-        Joueur j = new Joueur("Tom");
-        /*j.ajouterCoup(2, 5);
-        j.ajouterCoup(7, 3);
-        j.ajouterCoup(5, 5);
-        j.ajouterCoup(1, 0);
-        j.ajouterCoup(0, 0);
-        j.ajouterCoup(4, 6);
-        j.ajouterCoup(10, 0);
-        j.ajouterCoup(10, 0);
-        j.ajouterCoup(10, 0);
-        j.ajouterDernierCoup(5, 5, 5);*/
-
-
-        Bowling b = new Bowling(j);
-
+    @Override
+    public String toString() {
         try {
-            b.demarrerPartie();
-            b.afficherScore();
+           return (joueur.getNomJoueur() + " : \n" + score.getVal()
+                    + "\na obtenu " + score.getScore() + " points");
         } catch (Exception e) {
-            e.printStackTrace();
+            return joueur.getNomJoueur() + " : problème avec le résultat";
         }
     }
 }

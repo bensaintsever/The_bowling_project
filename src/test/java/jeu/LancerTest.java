@@ -25,18 +25,18 @@ public class LancerTest extends TestCase {
 
         try{
             new Lancer(2,3).lance();
-        }catch (Exception e){
+            fail();
+        } catch (Exception e) {
             assertTrue(true);
         }
-        assertTrue(false);
     }
 
     public void testLanceAvecAucuneQuille() throws Exception {
         try{
             new Lancer(0,0).lance();
+            fail();
         }catch (Exception e){
             assertTrue(true);
         }
-        assertTrue(false);
     }
 }

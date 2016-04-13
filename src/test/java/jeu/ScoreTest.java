@@ -37,6 +37,14 @@ public class ScoreTest extends TestCase {
             System.out.println("ERREUR TESTAjouterJeu N° 1");
         }
 
+        try {
+            // Capacité max atteinte normalement
+            s1.ajouterJeu(j1);
+            fail();
+        } catch (Exception e){
+            assertTrue(true);
+        }
+
         /******** TEST 2 ********/
         boolean test2 = false;
         Score s2 = new Score();
@@ -117,17 +125,89 @@ public class ScoreTest extends TestCase {
             System.out.println("ERREUR TESTAjouterJeu N° 5");
         }
 
-        assertTrue(test1 & test2 & test3 & test4 & test5);
+        /******** TEST 6 ********/
+        // Jeu non joué = 0 points
+        boolean test6 = false;
+        Score s6 = new Score();
+        Jeu j6 = new Jeu();
+
+        for (int i = 0; i < 9; i++) {
+            s6.ajouterJeu(j6);
+        }
+        dernierJeu.jouer(0,0,0);
+        s6.ajouterDernierJeu(dernierJeu);
+        //PREMIER COUPS COMPTABILISE
+        if (s6.getScore() == 0) {
+            test6 = true;
+        } else {
+            System.out.println("ERREUR TESTAjouterJeu N° 6");
+        }
+
+        /******** TEST 7 ********/
+        Score s7 = new Score();
+        DernierJeu last = new DernierJeu();
+        last.jouer(10,5,2);
+        this.auto(s7,last
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5);
+
+        assertEquals(157, s7.getScore());
+
+        /******** TEST 8 ********/
+        Score s8 = new Score();
+        last = new DernierJeu();
+        last.jouer(5,5,2);
+        this.auto(s8,last
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5);
+
+        assertEquals(147, s8.getScore());
+
+
+        assertTrue(test1 & test2 & test3 & test4 & test5 & test6);
     }
 
     public void testGetScore() throws Exception {
 
-        //Optention du score sans jeu.
+        //Obtention du score sans jeu.
         boolean test1 = false;
+        DernierJeu dj = new DernierJeu();
+        Score s = new Score();
         try {
-            new Score().getScore();
+            s.ajouterDernierJeu(dj);
+            s.getScore();
         } catch (Exception e) {
             test1 = true;
+        }
+
+        //Obtention du score sans dernierjeu.
+        boolean test0 = false;
+        try {
+            Score s0 = new Score();
+            Jeu j0 = new Jeu();
+            j0.jouer(1, 3);
+            //Depassement intentionnel
+            for (int i = 0; i < 9; i++) {
+                s0.ajouterJeu(j0);
+            }
+            //s0.ajouterDernierJeu(dernierJeu);
+            s0.getScore();
+        } catch (Exception e) {
+            test0 = true;
         }
 
         //Depassement du nombre de jeu possible.
@@ -165,13 +245,79 @@ public class ScoreTest extends TestCase {
             System.out.println("ERREUR TESTGetScore N° 3");
         }
 
+        // La liste des jeux n'a pas la bonne taille
+        boolean test4 = false;
+
+        Score s4 = new Score();
+        DernierJeu last = new DernierJeu();
+        Jeu j4 = new Jeu();
+        j4.jouer(8, 0);
+        last.jouer(0,0,0);
+        s4.ajouterJeu(j4);
+        s4.ajouterDernierJeu(last);
+        try {
+            s4.getScore();
+            System.out.println("ERREUR TESTGetScore N° 4");
+        } catch (Exception e) {
+            test4 = true;
+        }
+
+        boolean test5 = false;
+
+        Score s5 = new Score();
+        last = new DernierJeu();
+        last.jouer(2,2,0);
+        Jeu j5 = new Jeu();
+        j5.jouer(8, 2);
+        for ( int i = 0 ; i < 9 ; i++ ) {
+             s5.ajouterJeu(j5);
+        }
+        s5.ajouterDernierJeu(last);
+        try {
+            s5.getScore();
+            test5 = true;
+        } catch (Exception e) {
+            System.out.println("ERREUR TESTGetScore N° 5");
+            e.printStackTrace();
+        }
 
 
+        Score s6 = new Score();
+        last = new DernierJeu();
+        last.jouer(2,2,0);
+        Jeu j6 = new Jeu();
+        j6.jouer(10, 0);
+        for ( int i = 0 ; i < 9 ; i++ ) {
+            s6.ajouterJeu(j6);
+        }
+        s6.ajouterDernierJeu(last);
+        try {
+            s6.getScore();
+        } catch (Exception e) {
+            System.out.println("ERREUR TESTGetScore N° 6");
+            e.printStackTrace();
+        }
 
-        assertTrue(test1 & test2 & test3);
+        assertTrue(test0 & test1 & test2 & test3 & test4 & test5);
     }
 
     public void testGetVal() throws Exception {
+        // Test exception
+        Score s0 = new Score();
+        DernierJeu last = new DernierJeu();
+        Jeu j0 = new Jeu();
+        j0.jouer(8, 0);
+        last.jouer(0,0,0);
+        s0.ajouterJeu(j0);
+        s0.ajouterDernierJeu(last);
+        try {
+            s0.getVal();
+            fail();
+        } catch (Exception e) {
+            assertTrue(true);
+        }
+
+
         Score s1 = new Score();
         Jeu j1 = new Jeu();
 
@@ -187,7 +333,7 @@ public class ScoreTest extends TestCase {
         for (int i = 0; i < 5; i++) {
             s1.ajouterJeu(j1);
         }
-        DernierJeu last = new DernierJeu();
+        last = new DernierJeu();
         last.jouer(10,0,0);
         s1.ajouterDernierJeu(last);
         assertEquals("X521/6_XXXXXX__", s1.getVal());
@@ -271,7 +417,7 @@ public class ScoreTest extends TestCase {
         assertEquals("9_9_9_9_9_9_9_9_9_9_", s1.getVal());
 
         s1 = new Score();
-        last.jouer(5,5,5);
+        last.jouer(0,10,5);
         this.auto(s1,last
                 ,5,5
                 ,5,5
@@ -283,7 +429,54 @@ public class ScoreTest extends TestCase {
                 ,5,5
                 ,5,5);
 
-        assertEquals("5/5/5/5/5/5/5/5/5/5/5", s1.getVal());
+        assertEquals("5/5/5/5/5/5/5/5/5/0/5", s1.getVal());
+
+        s1 = new Score();
+        last.jouer(5,0,0);
+        this.auto(s1,last
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5);
+
+        assertEquals("5/5/5/5/5/5/5/5/5/5_", s1.getVal());
+
+        s1 = new Score();
+        last.jouer(10,5,5);
+        this.auto(s1,last
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5);
+
+        assertEquals("5/5/5/5/5/5/5/5/5/X5/", s1.getVal());
+
+
+        s1 = new Score();
+        last = new DernierJeu();
+        last.jouer(4,5,0);
+        this.auto(s1,last
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,10,0);
+
+        assertEquals("5/5/5/5/5/5/5/5/X45", s1.getVal());
     }
 
     /**
@@ -305,9 +498,78 @@ public class ScoreTest extends TestCase {
         }
     }
 
-    public void testAjouterDernierJeu() {
+    public void testAjouterDernierJeu() throws Exception {
         DernierJeu last = new DernierJeu();
-        // TO DO
-    }
+        Score s = new Score();
+        try {
+            s.ajouterDernierJeu(last);
+            assertTrue(true);
+        } catch (Exception e) {
+            fail();
+        }
 
+        Score s1 = new Score();
+        last = new DernierJeu();
+        last.jouer(5,5,0);
+        this.auto(s1,last
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5);
+
+        assertEquals("5/5/5/5/5/5/5/5/5/5/_", s1.getVal());
+
+        s1 = new Score();
+        last = new DernierJeu();
+        last.jouer(10,8,1);
+        this.auto(s1,last
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5);
+
+        assertEquals("5/5/5/5/5/5/5/5/5/X81", s1.getVal());
+
+        s1 = new Score();
+        last = new DernierJeu();
+        last.jouer(10,10,1);
+        this.auto(s1,last
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5);
+
+        assertEquals("5/5/5/5/5/5/5/5/5/XX1", s1.getVal());
+
+        s1 = new Score();
+        last = new DernierJeu();
+        last.jouer(10,10,0);
+        this.auto(s1,last
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5
+                ,5,5);
+
+        assertEquals("5/5/5/5/5/5/5/5/5/XX_", s1.getVal());
+    }
 }

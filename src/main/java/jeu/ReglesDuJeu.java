@@ -26,7 +26,7 @@ public final class ReglesDuJeu {
     /**
      * Constructeur des règles du jeu.
      */
-    private ReglesDuJeu() {
+    protected ReglesDuJeu() {
     }
 
     /**
